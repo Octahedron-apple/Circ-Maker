@@ -9,6 +9,18 @@
 
 Input is provided via **DSL files** (e.g., `my_circuit.circdef`). Because our engine parses these as restricted Python code injected with our builder context, you get to write pure logical equations using natural Python bitwise operators (`&`, `|`, `^`, `~`) without any boilerplate!
 
+### DSL Syntax & Operators
+
+Our DSL is essentially Python, but overloaded to create logic gates:
+
+- **Inputs/Outputs:** Use `circ.add_input("Name")` and `circ.add_output("Name", signal)`.
+- **AND Gate (`&`):** e.g., `Out = A & B`
+- **OR Gate (`|`):** e.g., `Out = A | B`
+- **XOR Gate (`^`):** e.g., `Out = A ^ B`
+- **NOT Gate (`~`):** e.g., `Out = ~A`
+
+Because it's embedded in Python, you can freely use variables, parenthesis for grouping (like `(A & B) | C`), and loops to generate arrays of gates!
+
 ### Example DSL File (`adder.circdef`):
 
 ```python

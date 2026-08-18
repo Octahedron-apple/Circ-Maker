@@ -1,0 +1,21 @@
+circ = CircuitBuilder("MUX_4to1")
+
+# Data inputs
+D0 = circ.add_input("D0")
+D1 = circ.add_input("D1")
+D2 = circ.add_input("D2")
+D3 = circ.add_input("D3")
+
+# Select lines
+S0 = circ.add_input("S0")
+S1 = circ.add_input("S1")
+
+# Mux logic
+Out0 = D0 & ~S1 & ~S0
+Out1 = D1 & ~S1 & S0
+Out2 = D2 & S1 & ~S0
+Out3 = D3 & S1 & S0
+
+Out = Out0 | Out1 | Out2 | Out3
+
+circ.add_output("Out", Out)

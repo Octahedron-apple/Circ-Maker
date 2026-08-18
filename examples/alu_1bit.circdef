@@ -1,0 +1,19 @@
+circ = CircuitBuilder("ALU_1bit")
+
+A = circ.add_input("A")
+B = circ.add_input("B")
+Cin = circ.add_input("Cin")
+Op = circ.add_input("Op") # 0 = Add, 1 = AND
+
+# Addition logic
+Sum = A ^ B ^ Cin
+Cout = (A & B) | (Cin & (A ^ B))
+
+# AND logic
+AndOut = A & B
+
+# MUX to select operation based on Op
+Result = (Sum & ~Op) | (AndOut & Op)
+
+circ.add_output("Result", Result)
+circ.add_output("Cout", Cout)

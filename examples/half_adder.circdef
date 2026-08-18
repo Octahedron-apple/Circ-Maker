@@ -1,0 +1,10 @@
+circ = CircuitBuilder("Half_Adder")
+
+A = circ.add_input("A")
+B = circ.add_input("B")
+
+Sum = A ^ B
+Carry = A & B
+
+circ.add_output("Sum", Sum)
+circ.add_output("Carry", Carry)
