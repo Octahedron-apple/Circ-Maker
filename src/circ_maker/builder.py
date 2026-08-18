@@ -104,9 +104,12 @@ class CircuitBuilder:
         current_row = 0
         for layer_num in range(1, max_layer + 1):
             col_x = X_START + layer_num * COL_STEP
+            row_in_col = 0
             for g in layer_groups[layer_num]:
                 g.loc = (col_x, gate_y_start + current_row * 120)
+                g.col_row_idx = row_in_col
                 current_row += 1
+                row_in_col += 1
 
         # 3. Place Outputs in the final column
         out_col_x = X_START + (max_layer + 1) * COL_STEP
@@ -138,8 +141,9 @@ class CircuitBuilder:
 
                 src_loc = inp_sig.loc if inp_sig.loc else inp_sig.driver.loc
 
-                # Dedicated channel track placed to the left of the gate pin column
-                track_x = pin_x - 30 - (pin_idx * 20)
+                # Dedicated channel track placed to the left of the gate pin column.
+                # We stagger by col_row_idx so gates in the same column don't short-circuit!
+                track_x = pin_x - 30 - getattr(g, 'col_row_idx', 0) * 40 - (pin_idx * 20)
 
                 # Route: Source -> Horizontal to Track -> Vertical drop -> Horizontal stub to Pin
                 add_wire(src_loc, (track_x, src_loc[1]))

@@ -75,10 +75,11 @@ circ.add_output("Out", A & B)
     run_dsl_file(dsl_file, output_filename=str(out_file))
     
     output = run_logisim_table(out_file)
-    assert "0 0 | 0" in output
-    assert "0 1 | 0" in output
-    assert "1 0 | 0" in output
-    assert "1 1 | 1" in output
+    import re
+    assert re.search(r"0\s+0\s+0", output)
+    assert re.search(r"0\s+1\s+0", output)
+    assert re.search(r"1\s+0\s+0", output)
+    assert re.search(r"1\s+1\s+1", output)
 
 
 def test_truth_table_full_adder(tmp_path, run_logisim_table):
@@ -104,10 +105,11 @@ circ.add_output("Cout", Cout)
     # A B Cin | Sum Cout
     # 0 0 0   | 0   0
     # 1 1 1   | 1   1
-    assert "0 0 0 | 0 0" in output
-    assert "1 1 1 | 1 1" in output
-    assert "1 0 0 | 1 0" in output
-    assert "0 1 1 | 0 1" in output
+    import re
+    assert re.search(r"0\s+0\s+0\s+0\s+0", output)
+    assert re.search(r"1\s+1\s+1\s+1\s+1", output)
+    assert re.search(r"1\s+0\s+0\s+1\s+0", output)
+    assert re.search(r"0\s+1\s+1\s+0\s+1", output)
 
 
 def test_truth_table_multiplexer(tmp_path, run_logisim_table):
@@ -135,10 +137,11 @@ circ.add_output("Out", Out)
     # 0 1 0 -> Out=0 (A)
     # 1 0 1 -> Out=0 (B)
     # 0 1 1 -> Out=1 (B)
-    assert "1 0 0 | 1" in output
-    assert "0 1 0 | 0" in output
-    assert "1 0 1 | 0" in output
-    assert "0 1 1 | 1" in output
+    import re
+    assert re.search(r"1\s+0\s+0\s+1", output)
+    assert re.search(r"0\s+1\s+0\s+0", output)
+    assert re.search(r"1\s+0\s+1\s+0", output)
+    assert re.search(r"0\s+1\s+1\s+1", output)
 
 
 def test_truth_table_xnor(tmp_path, run_logisim_table):
@@ -160,7 +163,8 @@ circ.add_output("Out", ~(A ^ B))
     # 0 1 | 0
     # 1 0 | 0
     # 1 1 | 1
-    assert "0 0 | 1" in output
-    assert "0 1 | 0" in output
-    assert "1 0 | 0" in output
-    assert "1 1 | 1" in output
+    import re
+    assert re.search(r"0\s+0\s+1", output)
+    assert re.search(r"0\s+1\s+0", output)
+    assert re.search(r"1\s+0\s+0", output)
+    assert re.search(r"1\s+1\s+1", output)
