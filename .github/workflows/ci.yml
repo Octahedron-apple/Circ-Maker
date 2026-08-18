@@ -19,4 +19,4 @@ jobs:
           
       - name: Run Pytest with Logisim-Evolution
         run: |
-          nix-shell --run "PYTHONPATH=src python3 -m pytest tests/ -v"
+          nix-shell --run "PYTHONPATH=src pytest tests/ -v"

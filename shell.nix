@@ -34,7 +34,9 @@ pkgs.mkShell {
     openblas lapack
   ];
   shellHook = ''
-    source $HOME/.Virtual-Environment/normal/bin/activate
-    echo "[✓] Normal venv activated."
+    if [ -f "$HOME/.Virtual-Environment/normal/bin/activate" ]; then
+      source "$HOME/.Virtual-Environment/normal/bin/activate"
+      echo "[✓] Normal venv activated."
+    fi
   '';
 }
