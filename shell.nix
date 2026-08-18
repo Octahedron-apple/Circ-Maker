@@ -4,7 +4,8 @@
 { pkgs ? import <nixpkgs> {} }:
 pkgs.mkShell {
   buildInputs = with pkgs; [
-    python3 python3Packages.tkinter pkg-config
+    python3 python3Packages.tkinter python3Packages.pytest pkg-config
+    logisim-evolution
     glibc stdenv.cc.cc.lib gfortran.cc.lib
     bzip2 xz zlib openssl sqlite ncurses readline
     libffi expat gdbm mpdecimal
