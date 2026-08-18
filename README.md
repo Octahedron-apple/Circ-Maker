@@ -1,9 +1,11 @@
 # Circ-Maker
 
-**Circ-Maker** is a Python-based framework and DSL (Domain Specific Language) for generating fully functional, non-colliding Logisim-Evolution `.circ` files from simple code.
+[![CI](https://github.com/Octahedron-apple/Circ-Maker/actions/workflows/ci.yml/badge.svg)](https://github.com/Octahedron-apple/Circ-Maker/actions/workflows/ci.yml) ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge) ![Logisim](https://img.shields.io/badge/Logisim--Evolution-Compatible-orange?style=for-the-badge)
+
+**Circ-Maker** is a Python-based framework and DSL (Domain Specific Language) designed to programmatically generate fully functional, non-colliding Logisim-Evolution `.circ` files from simple, highly readable code.
 
 > **Built with Test-Driven Development (TDD) 🚀**
-> We didn't just write this; we engineered it. By adhering to rigorous TDD principles, we designed a suite of automated Logisim truth-table compilation tests *before* finalizing the logic! Our automated CI tests instantly catch complex routing short-circuits (like the ones we successfully patched in our channel router), guaranteeing that the logic you write is strictly the logic you get. 
+> This framework is engineered around rigorous TDD principles. A comprehensive suite of automated Logisim truth-table compilation tests guarantees that the generated routing logic is robust. Automated CI tests continuously validate the underlying channel router against complex short-circuits, ensuring that the circuit logic designed in the DSL is strictly what is produced in the final `.circ` file. 
 
 ## How it Works: The DSL
 
@@ -40,7 +42,7 @@ circ.add_output("Cout", Cout)
 ## Basic Instructions
 
 ### 1. Setup Environment
-We provide a reproducible `nix-shell` environment that includes all dependencies (including Logisim-Evolution for headless testing).
+A reproducible `nix-shell` environment is provided, which includes all dependencies (including Logisim-Evolution for headless testing).
 ```bash
 nix-shell
 ```
@@ -57,7 +59,7 @@ run_dsl_file("adder.circdef", output_filename="adder.circ")
 This produces a fully routed `adder.circ` file that you can immediately open in the Logisim-Evolution GUI.
 
 ### 3. Running the Test Suite
-Because we value TDD, you can verify your routing and logic at any time. Our test suite actually boots Logisim-Evolution headlessly in the background to verify the truth tables of the generated XML files!
+To uphold TDD principles, the test suite automatically boots Logisim-Evolution headlessly in the background to verify the truth tables of the generated XML files. This allows for constant validation of routing and logic behavior.
 ```bash
 nix-shell --run "PYTHONPATH=src python3 -m pytest tests/"
 ```
