@@ -40,16 +40,26 @@ A reproducible `nix-shell` environment is provided, which includes all dependenc
 nix-shell
 ```
 
-### 2. Generating a Circuit
-Currently, you can use our DSL runner to parse a definition file and output a `.circ` file. 
+### 2. Generating a Circuit via CLI
+Once installed, you can use the built-in CLI command to parse a definition file and output a `.circ` file. 
 
-Create a script or use the runner directly in Python:
+```bash
+# This will automatically generate 'adder.circ' in the same directory
+circ-maker adder.circdef
+```
+
+You can also specify a custom output path:
+```bash
+circ-maker adder.circdef -o custom_output.circ
+```
+
+Alternatively, if you prefer generating circuits directly from within a Python script:
 ```python
 from circ_maker.runner import run_dsl_file
 
 run_dsl_file("adder.circdef", output_filename="adder.circ")
 ```
-This produces a fully routed `adder.circ` file that you can immediately open in the Logisim-Evolution GUI.
+This produces a fully routed `.circ` file that you can immediately open in the Logisim-Evolution GUI.
 
 ### 3. Running the Test Suite
 To uphold TDD principles, the test suite automatically boots Logisim-Evolution headlessly in the background to verify the truth tables of the generated XML files. This allows for constant validation of routing and logic behavior.
