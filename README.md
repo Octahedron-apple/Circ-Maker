@@ -1,5 +1,9 @@
 # Circ-Maker
 
+<div align="center">
+  <img src="docs/assets/logo.png" alt="Circ-Maker Logo" width="400"/>
+</div>
+
 [![CI](https://github.com/Octahedron-apple/Circ-Maker/actions/workflows/ci.yml/badge.svg)](https://github.com/Octahedron-apple/Circ-Maker/actions/workflows/ci.yml) ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge) ![Logisim](https://img.shields.io/badge/Logisim--Evolution-Compatible-orange?style=for-the-badge)
 
 **Circ-Maker** is a Python-based framework and DSL (Domain Specific Language) designed to programmatically generate fully functional, non-colliding Logisim-Evolution `.circ` files from simple, highly readable code.
@@ -10,3 +14,9 @@
 ## Documentation
 
 For a comprehensive guide on how to write circuit definitions using our DSL, as well as setup and generation instructions, please refer to our **[Usage and Syntax Guide](USAGE.md)**.
+
+## Generated Output Example
+
+Here is an example of what Circ-Maker can automatically generate from our Python DSL:
+
+![Half Adder Example](docs/assets/Half_Add_example.png)
